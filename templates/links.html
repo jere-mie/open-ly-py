@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Links</h1>
+{% for link in links %}
+    <div class="container bg-light">
+        <h4>{{ link.url }}</h4>
+        <h4>{{ link.dest }}</h4>
+    </div>    
+    <br><br>
+{% endfor %}
+{% endblock %}

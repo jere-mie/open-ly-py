@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Welcome to Bornais-Ly!</h1>
+<h4>Input a new link here:</h4>
+<div class="container">
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.password.label(class="form-control-label") }}
+            {{ form.password(class="form-control-lg") }}
+        </div>
+        <div class="form-group">
+            {{ form.url.label(class="form-control-label") }}
+            {{ form.url(class="form-control-lg") }}
+        </div>
+        <div class="form-group">
+            {{ form.dest.label(class="form-control-label") }}
+            {{ form.dest(class="form-control-lg") }}
+        </div>
+        <br><br>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
