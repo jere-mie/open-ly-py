@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bornais-Ly</title>
+        <title>{{ data['pName'] }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <meta property="og:site_name" content="Bornais-Ly" />
-        <meta property="og:title" content="Bornais-Ly URL Shortener" />
-        <meta property="og:description" content="Simple URL shortener for the Bornais.ca domain (better than using subdomains for links)" />
+        <meta property="og:site_name" content="{{ data['pName'] }}" />
+        <meta property="og:title" content="{{ data['pName'] }} URL Shortener" />
+        <meta property="og:description" content="Simple URL shortener for the {{ data['domain'] }} domain" />
         <meta property="og:type" content="website" />
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
@@ -24,6 +24,32 @@
     
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <a class="navbar-brand" href="{{ url_for('home') }}">{{ data['pName'] }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('view') }}">View Links</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>  
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+            </div>
+          </nav>
+          <br><br><br>
         <div class="container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}

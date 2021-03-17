@@ -1,14 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h1 style="margin-top: 2.5rem;">Welcome to Bornais-Ly!</h1>
+<h1 style="margin-top: 2.5rem;">Welcome to {{ data['pName'] }}!</h1>
+{% if current_user.is_authenticated %}
 <h4>Input a new link here:</h4>
 <div class="container">
     <form method="post">
         {{ form.csrf_token }}
-        <div class="form-group">
-            {{ form.password.label(class="form-control-label") }}
-            {{ form.password(class="form-control") }}
-        </div>
         <div class="form-group">
             {{ form.url.label(class="form-control-label") }}
             {{ form.url(class="form-control") }}
@@ -23,4 +20,7 @@
         </div>
     </form>
 </div>
+{% else %}
+<h3 class="thin">You must be logged in to add a new link</h3>
+{% endif %}
 {% endblock %}

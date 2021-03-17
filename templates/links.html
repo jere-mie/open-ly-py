@@ -4,7 +4,7 @@
     <h1 style="margin-top: 2.5rem; margin-bottom: 2rem;">Current Links</h1>
     {% for link in links %}
         <div class="container bg-light pushed">
-            <h4>ly.bornais.ca/{{ link.url }}</h4>
+            <h4>{{ data['domain'] }}/{{ link.url }}</h4>
             <h4 class="thin" style="word-break: break-all">{{ link.dest }}</h4>
             <a class="btn btn-danger" href="{{url_for('delete', id=link.url)}}">Delete</a>
         </div>    
